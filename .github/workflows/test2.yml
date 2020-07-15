@@ -7,24 +7,16 @@ on:
       - "releases/*"
 
 jobs:
-  # unit tests
-  units:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - run: npm ci
-      - run: npm test
-
   # test action works running from the graph
-  test:
+  broken-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: "3.7"
+          python-version: '3.7'
       - uses: ./
         with:
-          checkName: lint
+          checkName: 'broken-test'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
